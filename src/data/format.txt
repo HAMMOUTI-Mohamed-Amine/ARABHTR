@@ -1,0 +1,14 @@
+#--- words.txt ---------------------------------------------------------------#
+#
+# la structure de la base de données
+#
+# 1 à 569: IFN/ENIT.
+# a-char0 à a-char713 : les lettres.
+# 1233225548643 à 1233184313047: ADAB.
+#
+#     1  -> ID de mot pour la ligne 00 dans le fichier words
+#
+#
+#     0 0 374 107   -> cadre englobant autour de ce mot au format x,y,w,h
+#     ةتاوللا              -> la transcription de ce mot
+#

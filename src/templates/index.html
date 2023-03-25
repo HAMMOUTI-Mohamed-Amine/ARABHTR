@@ -1,0 +1,141 @@
+<!DOCTYPE html >
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>HomePage</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/jumbotron.css') }}">
+    <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    
+    
+</head>
+
+<body>
+	<a href="#" class="logo" target="_blank">
+		<img src="{{url_for('static',filename='img/logo2.png') }}" alt="">
+	</a>
+    <div class="try">
+    <h1  target="_blank">Handwritten Arabic Text Recognition System</h1>
+    </div>
+  	<input class="menu-icon" type="checkbox" id="menu-icon" name="menu-icon"/>
+  	<label for="menu-icon"></label>
+  	<nav class="nav"> 	
+  		<ul class="pt-5">
+  			<div class="try">
+    <h1  target="_blank">Handwritten Arabic Text Recognition System</h1>
+    </div>
+  		<li>
+          
+            
+            
+               
+  	      </li>
+            <li><p class="h2">How to use</p></li>
+            <li>
+                <p class="h3"> In our work to build a handwritten Arabic text recognition system,
+            we used a neural network consisting of a convolutional neural network for deep computer 
+            vision and a recurrent neural network for natural language processing and a final connectionist 
+            temporal classification (CTC) layer.</p>
+            <p class="h3"> When starting the application, the (Home) page of this interface displays
+            an image upload area (input) and a recognition result display area (textarea), where writing 
+            is not allowed in this zone.</p>
+           <li><p class="h3">If you want to recognize handwriting, follow these steps:</p></li>
+           <li><p class="h3">Click on the input area (Select an Image).</p></li>
+           <li><p class="h3">Choose an image.</p></li>
+           <li><p class="h3">Click (Recognize).</p></li>
+           <li><p class="h3">When (Recognize) is pressed, area (textarea) shows the handwriting recognition 
+           result.</p></li>
+  	      </li>
+            <li><p class="h2">Contact</p></li>
+           <li><p class="h3">m.hammouti.inf@gmail.com</p></li>
+           <li><p class="h3">+213797062058</p></li>
+            </ul>
+  	</nav>
+
+  	
+    
+            
+        
+ 
+
+  
+  <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+     <div class="section-center">
+  
+<div class="file-upload">
+
+  <div class="image-upload-wrap">
+    <input class="file-upload-input" onchange="readURL(this);"  id="file-picker" type="file" name="file" accept="image/*" multiple>
+    <div class="drag-text">
+
+<h3><img  src="{{url_for('static',filename='img/t2.png') }}" width="100" height="90"  /> <br><br><br><i class="fa fa-download" aria-hidden="true"></i>Select an Image</h3>
+   
+</div>
+  </div>
+  <div class="file-upload-content">
+    <img class="file-upload-image" src="#" alt="your image" />
+    <div class="image-title-wrap">
+      <button type="submit" onclick="removeUpload()" class="remove-image">Change</button>
+      <button type="submit" value="Upload"  id="upload-button" class="reco-image">Recognize</button>
+    </div>
+  </div>
+</div>
+</div>
+
+       </form>
+ <div class="section-center1">
+        
+       <figure class="figure">
+          <br>
+          <img src="{{url_for('static', filename=image_name)}} " style="max-width: 200px; max-height: 200px; margin: auto; padding: 10px; left:0; right:0;" >
+        </figure>
+        
+    
+        <p class="bg-success" style='border-radius: 4px;' >
+            <b>
+            <input id="spa"  type="text" style='border:none;width: 100%; text-align:center; border-radius: 4px;'  disabled>
+            </b><br>
+        </p>
+        
+        <textarea class="form-control" style='font-size: 45pt' id="textPred" dir="rtl" rows="1" disabled></textarea>
+    </div>
+    
+       
+        
+
+    <div class="nom"><p class="nomm">&copy; Mohamed Amine HAMMOUTI (2022)</p></div>
+    
+
+
+<script>
+    $("#file-picker").change(function(){
+        var input = document.getElementById('file-picker');
+        for (var i=0; i<input.files.length; i++)
+        {
+        //koala.jpg, koala.JPG substring(index) lastIndexOf('a') koala.1.jpg
+            var ext= input.files[i].name.substring(input.files[i].name.lastIndexOf('.')+1).toLowerCase()
+            if ((ext == 'tif') || (ext == 'png') || (ext == 'bmp') || (ext == 'jpg'))
+            {
+                $("#outer #msg").text("Files are supported")
+            }
+            else
+            {
+                $("#outer #msg").text("Files are NOT supported")
+                document.getElementById("file-picker").value ="";
+            }
+        }
+    } );
+</script>
+<script>
+     document.getElementById("textPred").value = "{{result}}"
+     document.getElementById("spa").value = "Recognized Text in: {{time_e}}"
+</script>
+
+<footer>
+    <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+</footer>
+</body>
+</html>
